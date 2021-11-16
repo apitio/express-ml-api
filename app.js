@@ -25,7 +25,7 @@ var app = express();
 
 
 // Use below with origin for local testing
-// app.use(cors({credentials: true, origin: 'http://localhost:8080'}));
+app.use(cors({credentials: true, origin: 'http://localhost:8080'}));
 
 
 //Use below without local testing
