@@ -29,7 +29,7 @@ app.use(cors({credentials: true, origin: 'http://localhost:8080'}));
 
 
 //Use below without local testing
-app.use(cors({credentials: true}));
+// app.use(cors({credentials: true}));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
