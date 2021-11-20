@@ -48,8 +48,22 @@ router.post("/register", (req, res, next) => {
 
 //Below works 11/15
 
-router.get("/", (req, res) => {
+let isAuthenticated = function(req,res,next){
+    console.log("isAuthenticated check: ", req);
+    if(req.user)
+       return next();
+    else
+       return res.status(401).json({
+         error: 'User not authenticated'
+       })
+ 
+ }
+
+
+
+router.get("/", isAuthenticated, (req, res) => {
     // const user = res.req.user;
+    
     console.log("/ response:::::: ", res);
     res.send(res);
 });
