@@ -40,6 +40,7 @@ const strategy  = new LocalStrategy(customFields, verifyCallback);
 passport.use(strategy);
 
 passport.serializeUser((user, done) => {
+    console.log("Seralized user: ", user)
     done(null, user.id);
 });
 

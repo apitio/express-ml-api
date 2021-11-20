@@ -81,6 +81,7 @@ router.get("/user/:username/", isAuth, (req, res, next) => {
 router.get("/authenticated", isAuth, (req, res, next) => {
     console.log("User is authenticated")
     const user = res.req.user;
+    console.log("Authetincated details: ", user)
     res.send(user);
     // res.send(JSON.stringify(check));
     // res.status(200).send(check);
