@@ -48,8 +48,9 @@ router.post("/register", (req, res, next) => {
 
 //Below works 11/15
 
-let isAuthenticated = function(req,res,next){
-    console.log("isAuthenticated check: ", req);
+var isAuthenticated = function(req,res,next){
+    console.log("check isAuthenticated: ", req)
+    console.log("check isAuthenticated res: ", res)
     if(req.user)
        return next();
     else
@@ -59,12 +60,9 @@ let isAuthenticated = function(req,res,next){
  
  }
 
-
-
-router.get("/", isAuthenticated, (req, res) => {
-    // const user = res.req.user;
-    
-    console.log("/ response:::::: ", res);
+router.get("/",isAuthenticated, (req, res) => {
+    const user = res.req.user;
+    console.log("/ response:::::: ", res.req.user);
     res.send(res);
 });
 
