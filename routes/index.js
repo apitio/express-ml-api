@@ -48,9 +48,10 @@ router.post("/register", (req, res, next) => {
 
 //Below works 11/15
 
-router.get("/", (req, res) => {
-    console.log("Requested / path: ");
-    res.json({ 'hello': 'world' });
+router.get("/", isAuth, (req, res) => {
+    const user = res.req.user;
+    console.log("User details: ", user)
+    res.send(user);
 });
 
 router.get("/api/test", (req, res, next) => {
@@ -79,8 +80,9 @@ router.get("/user/:username/", isAuth, (req, res, next) => {
 });
 
 router.get("/authenticated", isAuth, (req, res, next) => {
-    console.log("RESPONSEasd: ", res.req.user)
+    console.log("User is authenticated")
     const user = res.req.user;
+    // console.log("Authetincated details:")
     res.send(user);
     // res.send(JSON.stringify(check));
     // res.status(200).send(check);
