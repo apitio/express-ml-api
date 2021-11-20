@@ -29,7 +29,11 @@ var app = express();
 
 
 //Use below without local testing
-app.use(cors({credentials: true}));
+// app.use(cors({credentials: true}));
+
+app.use(cors({credentials: true, origin: 'https://parking-api-backend.herokuapp.com'}));
+
+https://parking-api-backend.herokuapp.com/
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
