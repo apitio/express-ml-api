@@ -48,22 +48,22 @@ router.post("/register", (req, res, next) => {
 
 //Below works 11/15
 
-var isAuthenticated = function(req,res,next){
-    console.log("check isAuthenticated: ", req.session)
-    console.log("check isAuthenticated: ", req.sessionID)
+// var isAuthenticated = function(req,res,next){
+//     console.log("check isAuthenticated: ", req.session)
+//     console.log("check isAuthenticated: ", req.sessionID)
 
-    // var car = User.find({ 'carDetails.carnumber': car_number}).exec();
-    // console.log("check isAuthenticated res: ", res)
-    if(req.user)
-       return next();
-    else
-       return res.status(401).json({
-         error: 'User not authenticated'
-       })
+//     // var car = User.find({ 'carDetails.carnumber': car_number}).exec();
+//     // console.log("check isAuthenticated res: ", res)
+//     if(req.user)
+//        return next();
+//     else
+//        return res.status(401).json({
+//          error: 'User not authenticated'
+//        })
  
- }
+//  }
 
-router.get("/",isAuthenticated, (req, res) => {
+router.get("/", (req, res) => {
     const user = res.req.user;
     console.log("/ response:::::: ", res.req.user);
     res.send(res);
