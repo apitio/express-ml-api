@@ -63,12 +63,24 @@ router.post("/register", (req, res, next) => {
  
 //  }
 
-router.get("/", (req, res) => {
-    console.log("req.session", req)
-    const user = res.req.user;
-    console.log("/ response:::::: ", res.req.user);
-    res.send(res);
-});
+// router.get("/", (req, res) => {
+//     console.log("req.session", req)
+//     const user = res.req.user;
+//     console.log("/ response:::::: ", res.req.user);
+//     res.send(res);
+// });
+
+
+router.get('/', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { return next(err); }
+      if (!user) { return res.redirect('/login'); }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        return res.send(user);
+      });
+    })(req, res, next);
+  });
 
 router.get("/api/test", (req, res, next) => {
     // res.send('<h1>Home</h1><p>Please <a href="/register">register</a></p>');
