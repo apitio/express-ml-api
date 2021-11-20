@@ -50,7 +50,7 @@ router.post("/register", (req, res, next) => {
 
 router.get("/", (req, res) => {
     const user = res.req.user;
-    console.log("/ response:::::: ", res.req);
+    console.log("/ response:::::: ", res.req.user);
     res.send(user);
 });
 
