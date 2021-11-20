@@ -67,6 +67,8 @@ router.post(
     })
 );
 
+
+
 router.get("/user/:username/", isAuth, (req, res, next) => {
     
     if (req.isAuthenticated()) {
@@ -75,6 +77,16 @@ router.get("/user/:username/", isAuth, (req, res, next) => {
         res.status(400).send("User is not authenticated");
     }
 });
+
+router.get("/authenticated", isAuth, (req, res, next) => {
+    console.log("User is authenticated")
+    const user = res.req.user;
+    res.send(user);
+    // res.send(JSON.stringify(check));
+    // res.status(200).send(check);
+});
+
+
 
 router.get("/protected-route", isAuth, (req, res, next) => {
     res.send("You made it to the route.");
