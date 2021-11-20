@@ -49,9 +49,9 @@ router.post("/register", (req, res, next) => {
 //Below works 11/15
 
 router.get("/", (req, res) => {
-    const user = res.req.user;
-    console.log("/ response:::::: ", res.req.user);
-    res.send(user);
+    // const user = res.req.user;
+    console.log("/ response:::::: ", res);
+    res.send(res);
 });
 
 router.get("/api/test", (req, res, next) => {
