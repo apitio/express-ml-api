@@ -50,6 +50,7 @@ router.post("/register", (req, res, next) => {
 
 router.get("/", (req, res) => {
     const user = res.req.user;
+    console.log("/ response:::::: ", res);
     res.send(user);
 });
 
@@ -87,8 +88,12 @@ router.get("/authenticated", isAuth, (req, res, next) => {
     // res.status(200).send(check);
 });
 
-router.get("/test", (req, res, next) => {
+router.get("/authenticate-user", (req, res, next) => {
     console.log("Session Details: ", req.session);
+    const user = res.req.user;
+    console.log("Authetincated details: ", user)
+    res.send(user);
+
 });
 
 
