@@ -48,28 +48,10 @@ router.post("/register", (req, res, next) => {
 
 //Below works 11/15
 
-// var isAuthenticated = function(req,res,next){
-//     console.log("check isAuthenticated: ", req.session)
-//     console.log("check isAuthenticated: ", req.sessionID)
-
-//     // var car = User.find({ 'carDetails.carnumber': car_number}).exec();
-//     // console.log("check isAuthenticated res: ", res)
-//     if(req.user)
-//        return next();
-//     else
-//        return res.status(401).json({
-//          error: 'User not authenticated'
-//        })
- 
-//  }
-
 router.get("/", (req, res) => {
-    console.log("req.session", req)
-    const user = res.req.user;
-    console.log("/ response:::::: ", res.req.user);
-    res.send(res);
+    console.log("Requested / path: ");
+    res.json({ 'hello': 'world' });
 });
-
 
 router.get("/api/test", (req, res, next) => {
     // res.send('<h1>Home</h1><p>Please <a href="/register">register</a></p>');
@@ -87,47 +69,23 @@ router.post(
 
 
 
-// router.get("/user/:username/", isAuth, (req, res, next) => {
+router.get("/user/:username/", isAuth, (req, res, next) => {
     
-//     if (req.isAuthenticated()) {
-//         res.status(200).send('User is authenticated');
-//     } else {
-//         res.status(400).send("User is not authenticated");
-//     }
-// });
+    if (req.isAuthenticated()) {
+        res.status(200).send('User is authenticated');
+    } else {
+        res.status(400).send("User is not authenticated");
+    }
+});
 
-// router.get("/user/:username", (req, res, next) => {
-//     console.log("Finding User details: ")
-//     console.log(req.params.username);
-//     //   const user = await UserActivity.find({ user_id: req.params.userID }).sort({_id:-1}).limit(1);
-//     User.find({ user_id: req.params.username })
-//       .sort({ _id: -1 })
-//       .limit(1)
-//       .then((user) => {
-//         res.status(200).send(user);
-//       })
-//       .catch((err) => {
-//         done(err);
-//         res.status(400).send("Bad Request");
-//       });
-// });
-
-router.get("/authenticated", (req, res, next) => {
-    console.log("User is authenticated")
+router.get("/authenticated", isAuth, (req, res, next) => {
+    console.log("RESPONSEasd: ", res.req.user)
     const user = res.req.user;
-    console.log("Authetincated details: ", user)
     res.send(user);
     // res.send(JSON.stringify(check));
     // res.status(200).send(check);
 });
 
-router.get("/authenticate-user", (req, res, next) => {
-    console.log("Session Details: ", req.session);
-    const user = res.req.user;
-    console.log("Authetincated details: ", user)
-    res.send(user);
-
-});
 
 
 router.get("/protected-route", isAuth, (req, res, next) => {
