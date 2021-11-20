@@ -41,29 +41,29 @@ passport.use(strategy);
 
 
 // BELOW WORKS -- commented for testing
-// passport.serializeUser((user, done) => {
-//     console.log("Seralized user: ", user)
-//     done(null, user.id);
-// });
-
-// passport.deserializeUser((userId, done) => {
-//     User.findById(userId)
-//         .then((user) => {
-//             done(null, user);
-//         })
-//         .catch(err => done(err))
-// });
-
-//TESTING BELOW::::11/20
 passport.serializeUser((user, done) => {
     console.log("Seralized user: ", user)
-    return done(null, user.id);
+    done(null, user.id);
 });
 
 passport.deserializeUser((userId, done) => {
     User.findById(userId)
         .then((user) => {
-            return done(null, user);
+            done(null, user);
         })
         .catch(err => done(err))
 });
+
+//TESTING BELOW::::11/20
+// passport.serializeUser((user, done) => {
+//     console.log("Seralized user: ", user)
+//     return done(null, user.id);
+// });
+
+// passport.deserializeUser((userId, done) => {
+//     User.findById(userId)
+//         .then((user) => {
+//             return done(null, user);
+//         })
+//         .catch(err => done(err))
+// });
