@@ -87,6 +87,9 @@ router.get("/authenticated", isAuth, (req, res, next) => {
     // res.status(200).send(check);
 });
 
+router.get("/test", (req, res, next) => {
+    console.log("Session Details: ", req.session);
+});
 
 
 router.get("/protected-route", isAuth, (req, res, next) => {
