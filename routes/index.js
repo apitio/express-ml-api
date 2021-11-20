@@ -48,7 +48,7 @@ router.post("/register", (req, res, next) => {
 
 //Below works 11/15
 
-router.get("/", isAuth, (req, res) => {
+router.get("/", (req, res) => {
     const user = res.req.user;
     console.log("User details: ", user)
     res.send(user);
