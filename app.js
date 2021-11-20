@@ -31,6 +31,7 @@ var app = express();
 //Use below without local testing
 // app.use(cors({credentials: true}));
 
+// USE BELOW FOR PROD DEPLOY 11/20
 const corsConfig = {
     credentials: true,
     origin: true,
