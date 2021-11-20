@@ -31,7 +31,14 @@ var app = express();
 //Use below without local testing
 // app.use(cors({credentials: true}));
 
-app.use(cors({credentials: true, origin: 'https://parking-api-backend.herokuapp.com'}));
+const corsConfig = {
+    credentials: true,
+    origin: true,
+};
+
+app.use(cors(corsConfig));
+
+// app.use(cors({credentials: true, origin: 'https://parking-api-backend.herokuapp.com'}));
 
 https://parking-api-backend.herokuapp.com/
 
