@@ -112,7 +112,7 @@ router.post(
 //       });
 // });
 
-router.get("/authenticated", isAuth, (req, res, next) => {
+router.get("/authenticated", (req, res, next) => {
     console.log("User is authenticated")
     const user = res.req.user;
     console.log("Authetincated details: ", user)
