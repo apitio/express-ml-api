@@ -45,4 +45,6 @@ const UserActivityName = 'User Parking Activity'
 const User = connection.model('User', UserSchema);
 const UserActivity = connection.model('UserActivity', UserActivitySchema, UserActivityName);
 
+// const sessionActivity = connection.model('sessions')
+
 module.exports = connection;

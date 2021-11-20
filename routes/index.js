@@ -49,8 +49,10 @@ router.post("/register", (req, res, next) => {
 //Below works 11/15
 
 var isAuthenticated = function(req,res,next){
-    console.log("check isAuthenticated: ", req)
+    console.log("check isAuthenticated: ", req.session)
     console.log("check isAuthenticated: ", req.sessionID)
+
+    // var car = User.find({ 'carDetails.carnumber': car_number}).exec();
     // console.log("check isAuthenticated res: ", res)
     if(req.user)
        return next();
