@@ -46,6 +46,77 @@ router.post("/register", (req, res, next) => {
 });
 
 
+router.post("/update-user", async (req, res, next) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const username = req.body.username;
+    const email = req.body.email;
+
+    console.log(firstname, lastname, username, email);
+
+    var query = {
+        'firstname': firstname,
+        'lastname': lastname,
+        'username': username,
+        'email': email
+    };
+
+    const filter = { username: username };
+
+    try {
+        let doc = await User.findOneAndUpdate(filter, query, {
+            new: true
+        });
+        res.status(200).send(doc);
+
+    } catch (error) {
+        console.log("Error in updating doc!")
+        res.status(400).send("Unable to update. Bad Request!");
+    }
+
+});
+
+router.post("/update-car-details", async (req, res, next) => {
+    const username = req.body.username;
+    const carmodel = req.body.carmodel;
+    const carmake = req.body.carmake;
+    const caryear = req.body.caryear;
+    const carnumber = req.body.carnumber;
+
+    console.log(username, carmodel, carmake, caryear, carnumber);
+
+    var query = {
+        'carmodel': carmodel,
+        'carmake': carmake,
+        'caryear': caryear,
+        'carnumber': carnumber
+    };
+
+    try {
+        await User.updateOne(
+            {
+                username: username,
+            },
+            {
+                $set: { carDetails: query },
+            },
+            {
+                upsert: true,
+                runValidators: true
+            }
+        );
+
+        res.status(200).send("Updated user details");
+
+    } catch (error) {
+        console.log("Error in updating doc!")
+        res.status(400).send("Unable to update. Bad Request!");
+    }
+
+
+});
+
+
 //Below works 11/15
 
 router.get("/", (req, res) => {
@@ -70,8 +141,10 @@ router.post(
 
 
 
+
+
 router.get("/user/:username/", isAuth, (req, res, next) => {
-    
+
     if (req.isAuthenticated()) {
         res.status(200).send('User is authenticated');
     } else {
